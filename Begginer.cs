@@ -62,6 +62,13 @@ namespace ConsoleApp1
             //nếu như vdu là 12.4 thì sẽ định dạng là double chứ ko phải float
             Console.WriteLine("kieu du lieu cua y: " + y.GetType().ToString());
 
+            string txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Console.WriteLine("The length of the txt string is: " + txt.Length); //đo độ dài kí tự của string
+
+            string text = "Hello World";
+            Console.WriteLine(text.ToUpper());   // Outputs "HELLO WORLD"
+            Console.WriteLine(text.ToLower());   // Outputs "hello world"
+
             //Console.ReadKey()
             Console.ReadLine(); //dừng chương trình là và giữ không auto off chương trình
 
