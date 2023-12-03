@@ -69,8 +69,34 @@ namespace ConsoleApp1
             Console.WriteLine(text.ToUpper());   // Outputs "HELLO WORLD"
             Console.WriteLine(text.ToLower());   // Outputs "hello world"
 
+            string firstName = "John ";
+            string lastName = "Doe";
+            string fullName = string.Concat(firstName, lastName); //string.Concat() dùng để nối 2 chuỗi
+            Console.WriteLine(fullName);
+
+            string fiName = "John";
+            string laName = "Doe";
+            string fuName = $"My full name is: {fiName} {laName}";//nối chuỗi tương tự concatenation (cần có $ ở phía trước)
+            Console.WriteLine(fuName);
+
+            string myString = "Hello"; // hiện thị kí tự theo vị trí
+            Console.WriteLine(myString[1]);  // Outputs "e"
+            string myString = "Hello"; //hiển thị vị trí của kí tự
+            Console.WriteLine(myString.IndexOf("e"));  // Outputs "1"
+            
+            /*Substring(), trích xuất các ký tự từ một chuỗi, 
+            bắt đầu từ vị trí đã chỉ định và trả về một chuỗi mới.
+            (thường được sử dụng cùng với IndexOf() để có được vị trí kí tư cụ thể:)*/
+            string name = "John Doe";
+            // xác định vị trí của 'D'
+            int charPos = name.IndexOf("D");
+            // Get last name
+            string lastName = name.Substring(charPos);
+            // Print the result
+            Console.WriteLine(lastName);
+
             //Console.ReadKey()
-            Console.ReadLine(); //dừng chương trình là và giữ không auto off chương trình
+            Console.ReadLine(); //dừng chương trình để xem kết quả và giữ không auto off chương trình
 
         }
     }
