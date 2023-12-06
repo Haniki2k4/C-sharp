@@ -112,7 +112,8 @@ namespace Beginner
                 Console.WriteLine(x);
             }
 
-            /*int N = 10;
+            /*vẽ hình chữ nhật */
+            int N = 10;
             int M = 20;
 
             char drawChar = '*';
