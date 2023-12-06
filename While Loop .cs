@@ -45,6 +45,7 @@ namespace ConsoleApp6
                     // giá trị sinh ngẫu nhiên trong khoảng [minRandomValue . . maxRandomValue - 1]
                     int showValue = rand.Next(minRandomValue, maxRandomValue);
                     // in ra giá trị của showValue trong 8 vị trí
+                    Console.ForegroundColor = ConsoleColor.Red; //đổi màu console
                     Console.Write("{0,8}", showValue);
                     // tăng giá trị của biến countLoop lên một đơn vị
                     countLoop++;
