@@ -21,6 +21,10 @@ namespace Array_exercise
                     Console.Write("Mời bạn nhập số dòng mảng: ");
                     string Rows = Console.ReadLine();
                     checkRows = int.TryParse(Rows, out N);
+                    /*Thử chuyển đổi chuỗi Rows thành một số nguyên (int).
+                Nếu quá trình chuyển đổi thành công, giá trị số nguyên sẽ được gán vào biến N, 
+                và kết quả của hàm int.TryParse() sẽ là true.
+                Nếu không thành công giá trị của N không thay đổi và kết quả của int.TryParse() sẽ là false.*/
                     Console.Write("Mời bạn nhập số cột mảng: ");
                     string Columns = Console.ReadLine();
                     checkColumns = int.TryParse(Columns, out M);
