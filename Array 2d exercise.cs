@@ -89,6 +89,36 @@ namespace Array_exercise
             } while (false);
             Console.WriteLine("\nTổng giá trị của mảng là: " + sum);
 
+            /*for (i = 0; i < mang.GetLength(0); i++)
+            {
+                for (j = 0; j < mang.GetLength(1);)
+                {
+                    Console.Write("Nhập phần tử của [{0}, {1}]: ", i,j);
+                    string strA = Console.ReadLine();
+                    checkA = int.TryParse(strA, out mang[i, j]);
+                    if (!checkA)
+                    {
+                        Console.WriteLine("Mời bạn nhập lại số dương!");
+                    }
+                    else j++;
+                }
+            }
+
+            int sum = 0;
+            Console.WriteLine("\n Mảng bạn vừa nhập là: ");
+            for (i = 0; i < mang.GetLength(0); i++)
+            {
+                for(j = 0; j < mang.GetLength(1); j++)
+                {
+                    Console.Write(mang[i, j] +" ");
+                    sum += mang[i, j];
+                }
+                Console.WriteLine(); 
+            }
+            Console.WriteLine("Tổng các giá trị trong mảng: " + sum);
+*/
+
+
             Console.ReadKey();
         }
     }
