@@ -53,6 +53,16 @@ namespace Beginner
                 {
                     Console.WriteLine(h);
                 }
+
+        /*tính tổng s= 1! + 2! + 3! +...+ 10!*/
+            int e = 1;
+            int tong = 0;
+            for (int i = 1; i <= 10; i++)
+            {
+                e *= i;
+                tong += e;
+            }
+            Console.WriteLine("Tong = " + tong);
             
         /*Ta thấy đoạn i++và j += 3 được cách nhau bởi dấu phẩy(,)
          * Với mỗi đoạn lệnh trong bước lặp.Chúng đươc phân cách nhau bởi dấu phẩy(,)
