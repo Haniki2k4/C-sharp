@@ -53,6 +53,11 @@ namespace String
             Console.WriteLine("Ký tự thứ 2 của chuỗi: " + chuoi9[1]);
             Console.WriteLine("Ký tự cuối cùng của chuỗi: " + chuoi9[j-1]); //index bdau từ 0 mà length bdau từ 1
 
+            //Cho xâu s được nhập và từ bàn phím, bạn hãy viết chương trình đảo ngược xâu s và hiển thị ra màn hình.
+            string s = Console.ReadLine();
+			for (int i = s.Length - 1; i >= 0; i--) {
+                Console.Write(s[i]);
+            }            
             //vdu1: Nhập vào 1 chuỗi
             //đếm xem có bao nhiêu ký tự thường
             //đếm xem có bao nhiêu chũ in hoa
