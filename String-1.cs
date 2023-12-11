@@ -35,6 +35,10 @@ namespace String
             string chuoi6 = i + " ";
             string chuoi7 = Convert.ToString(i);
 
+            //Phương thức Replace
+            //Phương thức này dùng để thay thế các chuỗi/ký tự được tìm thấy thành chuỗi/ký tự khác:
+            Console.WriteLine("Cod3l3arn".Replace('3', 'e'));
+            Console.WriteLine("Blackcat".Replace("Black", "White"));
             //tách chuỗi thành char lẻ và cho vào 1 mảng
             string chuoi8 = "Xin Chao";
             char[] lst = chuoi8.ToCharArray();
