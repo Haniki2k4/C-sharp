@@ -1,5 +1,16 @@
 class Program
 {
+  
+  void Test()
+  {
+    //khi phg thuc kthuc va cac bien ra khoi pham vi va se bi thu hoi
+    using Student sv = new Student("Ten");
+    Console.WriteLine("1");
+    Console.WriteLine("2");
+    Console.WriteLine("3");
+  }
+  /*trong main:
+  Test(); //dam bao cho dispose dc thi hanh khi ra khoi pham vi*/
   static void Main(string[] args)
   {
     //phuong thuc huy
@@ -16,7 +27,7 @@ class Program
     }
 
 //tao phuong thuc huy
-class Student{
+class Student : IDisposable {
   public string name;
   public Student(string name){
     this.name = name;
@@ -29,5 +40,20 @@ class Student{
     Console.ForegroundColor = ConsoleColor.Red; //nhung phg thuc bi huy se hien mau do
     Console.WriteLine("Huy " + name);
     Console.ReserColor;
+  }
+
+  public void Disposable()
+  {
+    Console.ForegroundColor = ConsoleColor.Red; //nhung phg thuc bi huy se hien mau do
+    Console.WriteLine("Huy (boi dispose) " + name);
+    Console.ReserColor;
+  } 
+}
+
+public void IDisposable { //quan li qua trinh thu hoi
+  //giai phong tai nguyen chu dong dang bi chiem giu
+  using (Student s = new Student("ten sinh vien "))
+  {
+    ///.... s
   }
 }
