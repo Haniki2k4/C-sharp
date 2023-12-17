@@ -8,6 +8,7 @@ using System.Diagnostics;
 using OfficeOpenXml;
 using System.IO;
 using LicenseContext = OfficeOpenXml.LicenseContext;
+using System.Net.Sockets;
 
 
 public class Package
@@ -23,7 +24,7 @@ public class Package
         Console.WriteLine("\t\t\t __________________________________________");
     }
 
-    public static void nhapFile(string fileLink)
+    public static void nhapFile(List<SsV> listSv, string fileLink)
     {
         try
         {
@@ -33,20 +34,24 @@ public class Package
                 {
                     ExcelWorksheet wks = pack.Workbook.Worksheets[0];
 
-                    int soHang = wks.Dimension.Rows; //chứa số hàng có dữ liệu trong trang tính
-                    int soCot = wks.Dimension.Columns; //chứa số cột có dữ liệu trong trang tính
-
-                    for (int cot = 2; cot <= soCot; cot++)
+                    int soHang = wks.Dimension.Rows; //chứa số hàng có dữ liệu trong trang 
+                    for (int hang = 2; hang <= soHang; hang++)
                     {
-                        for (int hang = 2; hang <= soHang; hang++)
+                        //đọc giá trị của mỗi một ô trong trang tính
+                        //in giá trị ra màn hình và kèm theo kí tự tab và tọa kcach
+                        SsV xuatSV = new SsV
                         {
-                            //đọc giá trị của mỗi một ô trong trang tính
-                            //in giá trị ra màn hình và kèm theo kí tự tab và tọa kcach
-                            Console.WriteLine($"{wks.Cells[hang, cot].Text}");
-                        }
-                        Console.WriteLine("Cập nhật file thành công!");
-                        Console.WriteLine();
+                            Name = wks.Cells[hang, 2].Text,
+                            lastName = wks.Cells[hang, 3].Text,
+                            mSv = long.Parse(wks.Cells[hang, 4].Text),
+                            cLass = wks.Cells[hang, 5].Text,
+                            sChool = wks.Cells[hang, 6].Text,
+                            GPA = float.Parse(wks.Cells[hang, 7].Text),
+                        };
+                        SsV.ThemSv(listSv, xuatSV);
                     }
+                    Console.WriteLine("Cập nhật file thành công!");
+                    Console.WriteLine();
                 }
             }
             else /*nếu tập tin Excel không tồn tại, 
@@ -178,6 +183,10 @@ public class SsV
             listSv.Remove(SvXoa);
             Console.WriteLine($"**Đã xóa {SvXoa.Name}({SvXoa.mSv})");
         }
+        else
+        {
+            Console.WriteLine("Không tìm thấy mã sinh viên phù hợp");
+        }
     }
 
     public static SsV NhapSvien()
@@ -214,7 +223,7 @@ public class Program
         Console.OutputEncoding = Encoding.UTF8;
         //Nhập, Tìm, Xóa, Sửa, Exit
         List<SsV> listSv = new List<SsV>();
-        string fileLink = @"D:\\SteamLibrary\\Module.xlsx";
+        string fileLink = @"D:\SteamLibrary\Module1.xlsx";
         int n;
         do
         {
@@ -226,7 +235,7 @@ public class Program
                 if (!int.TryParse(Console.ReadLine(), out n) || n < 0 || n > 7)
                 {
                     Package.tBao();
-                    Console.WriteLine("Mời nhập số phù hợp (0 -> 7)");
+                    Console.WriteLine("Mời nhập số phù hợp (0 -> 7)!");
                 }
                 else
                 {
@@ -238,12 +247,10 @@ public class Program
                 case 0: //xem
                     SsV.XemSvien(listSv);
                     break;
-                case 1: //nhập
-                    Console.WriteLine("Loading.....");
-                    Package.nhapFile(fileLink);
+                case 1: //Nhập
+                    Package.nhapFile(listSv, fileLink);
                     break;
                 case 2: //xuất
-                    Console.WriteLine("Loading.....");
                     Package.xuatFile(fileLink, listSv);
                     break;
                 case 3: //tìm
@@ -252,6 +259,7 @@ public class Program
                     SsV.TimKiem(listSv, SearchSv);
                     break;
                 case 4: //sửa
+                    Console.WriteLine("Xin mời sửa thông tin sinh viên (ngoại trừ Msv):");
                     SsV UpdSv = SsV.NhapSvien();
                     SsV.cSuaSv(listSv, UpdSv.mSv, UpdSv);
                     break;
@@ -264,6 +272,7 @@ public class Program
                     SsV.XoaSv(listSv, SvXoa);
                     break;
                 case 7: //thoát
+                    Environment.Exit(0);
                     break;
             }
             
