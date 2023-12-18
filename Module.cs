@@ -43,7 +43,7 @@ public class Package
                         {
                             Name = wks.Cells[hang, 2].Text,
                             lastName = wks.Cells[hang, 3].Text,
-                            mSv = long.Parse(wks.Cells[hang, 4].Text),
+                            mSv = wks.Cells[hang, 4].Text,
                             cLass = wks.Cells[hang, 5].Text,
                             sChool = wks.Cells[hang, 6].Text,
                             GPA = float.Parse(wks.Cells[hang, 7].Text),
@@ -115,7 +115,7 @@ public class SsV
     int Stt = 0;
     public string Name { set; get; } //tên của mỗi sinh viên
     public string lastName { set; get; }
-    public long mSv { set; get; } //mã sinh viên của mỗi sinh viên
+    public string mSv { set; get; } //mã sinh viên của mỗi sinh viên
     public string cLass { set; get; } //lớp đang học hiện tại của mỗi sinh viên
     public string sChool { set; get; }
     public float GPA { set; get; }
@@ -128,7 +128,7 @@ public class SsV
         }
     }
 
-    public static void TimKiem(List<SsV> listSv, long mSv)
+    public static void TimKiem(List<SsV> listSv, string mSv)
     {
         SsV tKiemSv = listSv.FirstOrDefault(sV => sV.mSv == mSv);
 
@@ -138,7 +138,8 @@ public class SsV
             Console.WriteLine($"Họ và tên: {tKiemSv.lastName}{tKiemSv.Name}");
             Console.WriteLine($"Mã Sinh Viên: {tKiemSv.mSv}");
             Console.WriteLine($"Lớp: {tKiemSv.cLass}");
-            Console.WriteLine($"Trường: {tKiemSv.GPA}");
+            Console.WriteLine($"Trường: {tKiemSv.sChool}");
+            Console.WriteLine($"GPA: {tKiemSv.GPA}");
             Console.WriteLine(" ");
         }
         else
@@ -147,7 +148,7 @@ public class SsV
         }
     }
 
-    public static void cSuaSv(List<SsV> listSv, long mSv, SsV UpdSv)
+    public static void cSuaSv(List<SsV> listSv, string mSv, SsV UpdSv)
     {
         //FirstOrDefault trả về phần tử đầu tiên trong danh sách thỏa mãn điều kiện chỉ định.
         SsV svSua = listSv.FirstOrDefault(sV => sV.mSv == mSv);
@@ -175,7 +176,7 @@ public class SsV
         Console.WriteLine($"**Đã thêm{sVienMoi.Name} - mã sinh viên:{sVienMoi.mSv}");
     }
 
-    public static void XoaSv(List<SsV> listSv, long mSv)
+    public static void XoaSv(List<SsV> listSv, string mSv)
     {
         SsV SvXoa = listSv.FirstOrDefault(sV => sV.mSv == mSv);
         if (SvXoa != null)
@@ -196,7 +197,7 @@ public class SsV
         Console.Write("Họ/Đệm Sinh Viên: ");
         string nhapLname = Console.ReadLine();
         Console.Write("Mã Sinh Viên: ");
-        var nhapMSV = long.Parse(Console.ReadLine());
+        string nhapMSV = Console.ReadLine();
         Console.Write("Lớp đào tạo: ");
         string nhapLop = Console.ReadLine();
         Console.Write("Trường: ");
@@ -255,7 +256,7 @@ public class Program
                     break;
                 case 3: //tìm
                     Console.Write("Nhập mã sinh viên cần tìm kiếm: ");
-                    var SearchSv = long.Parse(Console.ReadLine());
+                    string SearchSv = Console.ReadLine();
                     SsV.TimKiem(listSv, SearchSv);
                     break;
                 case 4: //sửa
@@ -268,7 +269,7 @@ public class Program
                     break;
                 case 6: //xóa
                     Console.Write("Nhập mã sinh viên cần loại bỏ: ");
-                    var SvXoa = int.Parse(Console.ReadLine());
+                    var SvXoa = Console.ReadLine();
                     SsV.XoaSv(listSv, SvXoa);
                     break;
                 case 7: //thoát
