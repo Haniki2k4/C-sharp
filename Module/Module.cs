@@ -21,7 +21,7 @@ public class Package
         Console.WriteLine("\t\t\t |0.Xem                       |7.Thoát    |");
         Console.WriteLine("\t\t\t |1.Nhập File  |3.Tìm kiếm    |5.Thêm     |");
         Console.WriteLine("\t\t\t |2.Xuất File  |4.Chỉnh sửa   |6.Xóa      |");
-        Console.WriteLine("\t\t\t __________________________________________");
+        Console.WriteLine("\t\t\t |________________________________________|");
     }
 
     public static void nhapFile(List<SsV> listSv, string fileLink)
@@ -35,20 +35,31 @@ public class Package
                     ExcelWorksheet wks = pack.Workbook.Worksheets[0];
 
                     int soHang = wks.Dimension.Rows; //chứa số hàng có dữ liệu trong trang 
-                    for (int hang = 2; hang <= soHang; hang++)
+                    for (int hang = 2; hang < soHang; hang++)
                     {
-                        //đọc giá trị của mỗi một ô trong trang tính
-                        //in giá trị ra màn hình và kèm theo kí tự tab và tọa kcach
-                        SsV xuatSV = new SsV
+                        float gpa;
+                        if (float.TryParse(wks.Cells[hang, 7].Text, out gpa))
                         {
-                            Name = wks.Cells[hang, 2].Text,
-                            lastName = wks.Cells[hang, 3].Text,
-                            mSv = wks.Cells[hang, 4].Text,
-                            cLass = wks.Cells[hang, 5].Text,
-                            sChool = wks.Cells[hang, 6].Text,
-                            GPA = float.Parse(wks.Cells[hang, 7].Text),
-                        };
-                        SsV.ThemSv(listSv, xuatSV);
+                            // Làm tròn giá trị GPA về 1 chữ số thập phân
+                            float roundedGPA = (float)Math.Round(gpa, 1);
+
+                            //đọc giá trị của mỗi một ô trong trang tính
+                            //in giá trị ra màn hình và kèm theo kí tự tab và tọa kcach
+                            SsV xuatSV = new SsV
+                            {
+                                Name = wks.Cells[hang, 2].Text,
+                                lastName = wks.Cells[hang, 3].Text,
+                                mSv = wks.Cells[hang, 4].Text,
+                                cLass = wks.Cells[hang, 5].Text,
+                                sChool = wks.Cells[hang, 6].Text,
+                                GPA = roundedGPA,
+                            };
+                            SsV.ThemSv(listSv, xuatSV);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Không thể chuyển đổi dữ liệu '{wks.Cells[hang, 7].Text}' thành số thực.");
+                        }
                     }
                     Console.WriteLine("Cập nhật file thành công!");
                     Console.WriteLine();
@@ -87,6 +98,7 @@ public class Package
                 ///dùng để lưu đối tượng hiện tại trong danh sách.
                 foreach (SsV sV in listSvien)
                 {
+
                     Console.WriteLine("Loading***");
                     ///Ghi giá trị của thuộc tính SsV của đối tượng sV 
                     ///vào ô tại hàng indexRow và cột 2 trong trang tính
@@ -95,7 +107,9 @@ public class Package
                     wks.Cells[indexHang, 4].Value = sV.mSv;
                     wks.Cells[indexHang, 5].Value = sV.cLass;
                     wks.Cells[indexHang, 6].Value = sV.sChool;
-                    wks.Cells[indexHang, 7].Value = sV.GPA;
+                    // Cập nhật giá trị GPA bằng cách làm tròn với 1 chữ số thập phân
+                    float roundedGPA = (float)Math.Round(sV.GPA, 1);
+                    wks.Cells[indexHang, 7].Value = roundedGPA;
 
                     indexHang++;
                     pack.Save(); // lưu lại các thay đổi vào tập tin Excel
@@ -124,7 +138,7 @@ public class SsV
     {
         foreach (var sV in listSv)
         {
-            Console.WriteLine($"***GPA của {sV.Name} {sV.lastName}[{sV.mSv}-{sV.cLass}-{sV.sChool}]: {sV.GPA}.");
+            Console.WriteLine($"***GPA của {sV.lastName} {sV.Name} [{sV.mSv}-{sV.cLass}-{sV.sChool}]: {sV.GPA}.");
         }
     }
 
@@ -173,7 +187,7 @@ public class SsV
     {
         sVienMoi.Stt = listSv.Count + 1;
         listSv.Add(sVienMoi);
-        Console.WriteLine($"**Đã thêm{sVienMoi.Name} - mã sinh viên:{sVienMoi.mSv}");
+        Console.WriteLine($"**Đã thêm: {sVienMoi.Name} - mã sinh viên:{sVienMoi.mSv}");
     }
 
     public static void XoaSv(List<SsV> listSv, string mSv)
@@ -220,7 +234,8 @@ public class Program
 {
     static void Main(string[] args)
     {
-        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
+        Console.InputEncoding = Encoding.Unicode;
         Console.OutputEncoding = Encoding.UTF8;
         //Nhập, Tìm, Xóa, Sửa, Exit
         List<SsV> listSv = new List<SsV>();
@@ -256,7 +271,7 @@ public class Program
                     break;
                 case 3: //tìm
                     Console.Write("Nhập mã sinh viên cần tìm kiếm: ");
-                    string SearchSv = Console.ReadLine();
+                    var SearchSv = Console.ReadLine();
                     SsV.TimKiem(listSv, SearchSv);
                     break;
                 case 4: //sửa
@@ -269,7 +284,7 @@ public class Program
                     break;
                 case 6: //xóa
                     Console.Write("Nhập mã sinh viên cần loại bỏ: ");
-                    var SvXoa = Console.ReadLine();
+                    string SvXoa = Console.ReadLine();
                     SsV.XoaSv(listSv, SvXoa);
                     break;
                 case 7: //thoát
