@@ -1,0 +1,51 @@
+Những toán tử này là các toán tử bit-wise trong ngôn ngữ lập trình. Chúng thực hiện các phép toán bit-wise trên các số nguyên.
+&=: Phép gán bitwise AND, thực hiện phép AND bit-wise giữa hai số rồi gán kết quả cho số bên trái.
+|=: Phép gán bitwise OR, thực hiện phép OR bit-wise giữa hai số rồi gán kết quả cho số bên trái.
+^=: Phép gán bitwise XOR, thực hiện phép XOR bit-wise giữa hai số rồi gán kết quả cho số bên trái.
+>>=: Phép dịch phải và gán, dịch phải bit-wise số bên trái đi số lượng bit chỉ định rồi gán kết quả cho số bên trái.
+<<=: Phép dịch trái và gán, dịch trái bit-wise số bên trái đi số lượng bit chỉ định rồi gán kết quả cho số bên trái.
+
+Ví dụ:
+Nếu x là 5 (x = 5):
+x &= 3 tương đương với x = x & 3, nghĩa là x = 5 & 3, kết quả là x = 1.
+x |= 3 tương đương với x = x | 3, nghĩa là x = 5 | 3, kết quả là x = 7.
+x ^= 3 tương đương với x = x ^ 3, nghĩa là x = 5 ^ 3, kết quả là x = 6.
+x >>= 1 tương đương với x = x >> 1, nghĩa là x = 5 >> 1, kết quả là x = 2.
+x <<= 2 tương đương với x = x << 2, nghĩa là x = 5 << 2, kết quả là x = 20.
+
+____Giả sử chúng ta có hai số nhị phân là 101 (tương đương với số thập phân là 5) và 011 (tương đương với số thập phân là 3).
+***Phép toán &= (AND bit-wise):
+101 & 011 tương đương với 5 & 3.
+Bạn so sánh từng bit tại cùng vị trí:
+--Bit đầu tiên: 1 & 0 sẽ cho kết quả là 0.
+--Bit thứ hai: 0 & 1 sẽ cho kết quả là 0.
+--Bit thứ ba: 1 & 1 sẽ cho kết quả là 1.
+Kết quả là 001 (tương đương với số thập phân là 1).
+Điều này có nghĩa rằng 101 & 011 sẽ cho kết quả là 001.
+
+***Phép toán |= (OR bit-wise):
+101 | 011 tương đương với 5 | 3.
+Bạn thực hiện OR giữa từng bit tại cùng vị trí:
+Bit đầu tiên: 1 | 0 sẽ cho kết quả là 1.
+--Bit thứ hai: 0 | 1 sẽ cho kết quả là 1.
+--Bit thứ ba: 1 | 1 sẽ cho kết quả là 1.
+--Kết quả là 111 (tương đương với số thập phân là 7).
+Điều này có nghĩa rằng 101 | 011 sẽ cho kết quả là 111.
+
+***Phép toán XOR (^=):
+Giả sử chúng ta có hai số nhị phân là 1010 (tương đương với số thập phân là 10) và 1100 (tương đương với số thập phân là 12).
+1010 ^ 1100 tương đương với 10 ^ 12.
+Thực hiện phép XOR bit-wise giữa từng bit tương ứng:
+--Bit thứ nhất: 1 ^ 1 sẽ cho kết quả 0.
+--Bit thứ hai: 0 ^ 1 sẽ cho kết quả 1.
+--Bit thứ ba: 1 ^ 0 sẽ cho kết quả 1.
+--Bit thứ tư: 0 ^ 0 sẽ cho kết quả 0.
+Kết quả là 0110 (tương đương với số thập phân là 6).
+Do đó, 1010 ^ 1100 sẽ cho kết quả 0110.
+
+***Dịch phải (>>=) và dịch trái (<<=):
+Giả sử chúng ta sử dụng số nhị phân 1100 (tương đương với số thập phân là 12).
+--1100 >>= 1 tương đương với 12 >> 1.
+Dịch phải một bit: 1100 dịch phải một bit sẽ trở thành 0110 (tương đương với số thập phân là 6).
+--1100 <<= 2 tương đương với 12 << 2.
+Dịch trái hai bit: 1100 dịch trái hai bit sẽ trở thành 110000 (tương đương với số thập phân là 48).
