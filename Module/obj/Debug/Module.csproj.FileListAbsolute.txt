@@ -1,0 +1,16 @@
+E:\C#\Module\bin\Debug\Module.exe.config
+E:\C#\Module\bin\Debug\Module.exe
+E:\C#\Module\bin\Debug\Module.pdb
+E:\C#\Module\bin\Debug\EPPlus.dll
+E:\C#\Module\bin\Debug\EPPlus.Interfaces.dll
+E:\C#\Module\bin\Debug\EPPlus.System.Drawing.dll
+E:\C#\Module\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+E:\C#\Module\bin\Debug\System.ComponentModel.Annotations.dll
+E:\C#\Module\bin\Debug\EPPlus.xml
+E:\C#\Module\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+E:\C#\Module\obj\Debug\Module.csproj.AssemblyReference.cache
+E:\C#\Module\obj\Debug\Module.csproj.SuggestedBindingRedirects.cache
+E:\C#\Module\obj\Debug\Module.csproj.CoreCompileInputs.cache
+E:\C#\Module\obj\Debug\Module.csproj.CopyComplete
+E:\C#\Module\obj\Debug\Module.exe
+E:\C#\Module\obj\Debug\Module.pdb
