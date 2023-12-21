@@ -25,3 +25,4 @@ Các kiểu dữ liệu văn bản có sẵn trong PostgreSQL bao gồm TEXT, VA
 --VD:Mã số nhân viên bao gồm chín chữ số.
 --VD:Một mã gồm có hai ký tự, được sử dụng để phân biệt vị trí lưu trữ cho các sản phẩm trong kho.
 
+
