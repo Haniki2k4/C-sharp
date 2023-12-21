@@ -1,9 +1,13 @@
 Có một số loại dữ liệu khác nhau có sẵn trong PostgreSQL. Bao gồm những kiểu sau:
       Text: Text được sử dụng cho các giá trị chuỗi như tên hay là mô tả sản phẩm.
       Numeric: Numeric được sử dụng cho các giá trị dữ liệu đại diện cho số lượng và số đo.
+            --VD: lãi suất ban đầu
+            --VD: số tiền cho vay lên tới 5.000.000 đô.
       Temporal: Temporal được sử dụng cho các giá trị dữ liệu đại diện cho ngày và thời gian.
       Boolean: Boolean được sử dụng cho các giá trị dữ liệu đại diện cho một giá trị có hai trạng thái: true hoặc false.
                   (sử dụng từ khoá BOOLEAN hoặc BOOL để khai báo một cột với kiểu dữ liệu BOOLEAN.
+            --VD: cho biết về trạng thái của quyết định cho vay đã được chấp nhận hay không dựa theo đơn yêu cầu.
+            --VD: mô trả việc tiền lãi có xoay vòng hay không
 
 ________________________________________________________________________________________________________________________________________________________________________
 Các kiểu dữ liệu văn bản có sẵn trong PostgreSQL bao gồm TEXT, VARCHAR và CHAR.
@@ -12,7 +16,7 @@ Các kiểu dữ liệu văn bản có sẵn trong PostgreSQL bao gồm TEXT, VA
       -Kiểu TEXT có thể dùng cho một chuỗi các ký tự không bị giới hạn về chiều dài.
       -Kiểu dữ liệu TEXT là một lựa chọn tốt cho dữ liệu văn bản có độ dài không xác định.
 --VD:Một trường dữ liệu thể hiện nội dung của email cho một nhà cung cấp dịch vụ email.
-
+--VD: nội dung của đơn yêu cầu.
 2. VARCHAR
       -Kiểu dữ liệu VARCHAR lưu trữ chuỗi các ký tự không bị giới hạn chiều dài. Ngoài ra kiểu VARCHAR còn cho phép người dùng đặt ra giới hạn đối với các giá trị dữ liệu 
       được gọi bằng cách mô tả một số nguyên N, được đặt trong ngoặc đơn liền sau VARCHAR. Ví dụ VARCHAR(50), VARCHAR(100),... 
@@ -34,11 +38,13 @@ PostgreSQL cung cấp 2 kiểu dữ liệu số: số nguyên, số thực dấu
 1.Số nguyên
  -Có 3 kiểu số nguyên trong PostgreSQL:
             -SMALLINT là số nguyên có dấu, được lưu trữ bằng 2 byte, có phạm vi từ -32,768 đến 32,767.
+                  --VD:  thời gian (tính theo tháng) để trả nợ
             -INTEGER là số nguyên có dấu, được lưu trữ bằng 4 byte, có phạm vi từ -2,147,483,648 đến 2,147,483,647.
                   --VD:  num_customers: số lượng khách hàng (ít nhất là 10 nghìn)
                   --VD:  num_employees: số lượng nhân viên (tối đa 1500 cho doanh nghiệp nhỏ).
             -SERIAL là kiểu số nguyên, PostgreSQL sẽ tự động tạo và điền các giá trị tăng dần vào cột SERIAL. 
-                  --VD:  id: id của công ty và cột này có giá trị tự động tăng lên đến hàng triệu.
+                  --VD:   id của công ty và cột này có giá trị tự động tăng lên đến hàng triệu.
+                  --VD:   id của các đơn yêu cầu, có giá trị tự động tăng lên đến hàng triệu.
                   (Tương tự với cột AUTO_INCREMENT trong cột MySQL hoặc AUTO INCREMENT trong SQLite.)
 
 2.Số thực dấu phẩy động
@@ -53,8 +59,11 @@ Kiểu dữ liệu tạm thời
 
  -Kiểu dữ liệu tạm thời cho phép bạn lưu trữ ngày tháng và/hoặc thời gian. PostgreSQL có 5 kiểu dữ liệu tạm thời chính:
             -DATE chỉ lưu trữ giá trị của ngày, tháng năm.
+                  --VD:  lưu trữ ngày khi đơn yêu cầu được xem xét.
+                  --VD:  ngày mà khoản vay ban đầu được phê duyệt.
             -TIME lưu trữ các giá trị thời gian trong ngày.
             -TIMESTAMP lưu trữ cả ngày tháng, năm và thời gian trong ngày.
+                  --VD:  ghi lại ngày và thời gian khi nhận được đơn yêu cầu.
             -TIMESTAMPTZ là kiểu dữ liệu dấu thời gian, nhận biết múi giờ. Là viết tắt của dấu thời gian với múi giờ.
             -INTERVAL lưu trữ khoảng thời gian.
               (TIMESTAMPTZ là phần mở rộng PostgreSQL trên các kiểu dữ liệu tạm thời theo tiêu chuẩn SQL.)
