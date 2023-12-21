@@ -3,6 +3,7 @@ Có một số loại dữ liệu khác nhau có sẵn trong PostgreSQL. Bao g�
       Numeric: Numeric được sử dụng cho các giá trị dữ liệu đại diện cho số lượng và số đo.
       Temporal: Temporal được sử dụng cho các giá trị dữ liệu đại diện cho ngày và thời gian.
       Boolean: Boolean được sử dụng cho các giá trị dữ liệu đại diện cho một giá trị có hai trạng thái: true hoặc false.
+                  (sử dụng từ khoá BOOLEAN hoặc BOOL để khai báo một cột với kiểu dữ liệu BOOLEAN.)
 
 Các kiểu dữ liệu văn bản có sẵn trong PostgreSQL bao gồm TEXT, VARCHAR và CHAR.
 1. TEXT
