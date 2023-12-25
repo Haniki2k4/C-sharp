@@ -50,3 +50,20 @@ public class Solution
         return result + romanDigits[s[s.Length - 1]];
     }
 }
+
+class Program
+{
+        static void Main(string[] args)
+        {
+            Solution solution = new Solution();
+            
+            // Chuỗi số La Mã để chuyển đổi
+            string romanNumeral = "XIV";
+            
+            // Gọi phương thức RomanToInt từ đối tượng solution để chuyển đổi chuỗi số La Mã
+            int result = solution.RomanToInt(romanNumeral);
+
+            // In kết quả
+            Console.WriteLine($"Chuỗi số La Mã {romanNumeral} tương đương với số nguyên: {result}");
+        }
+}
