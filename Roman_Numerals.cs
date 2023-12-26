@@ -51,19 +51,32 @@ public class Solution
     }
 }
 
-class Program
-{
+internal class Program
+    {
         static void Main(string[] args)
         {
-            Solution solution = new Solution();
-            
-            // Chuỗi số La Mã để chuyển đổi
-            string romanNumeral = "XIV";
-            
-            // Gọi phương thức RomanToInt từ đối tượng solution để chuyển đổi chuỗi số La Mã
-            int result = solution.RomanToInt(romanNumeral);
+            do
+            {
+                Console.WriteLine("\n\t ______Option________");
+                Console.WriteLine("\t|     1 = continue   |");
+                Console.WriteLine("\t|     2 = exit       |");
+                Console.WriteLine("\t|____________________|");
+                int n = int.Parse(Console.ReadLine());
+                switch (n)
+                {
+                    case 1:
+                        Solution RomanD = new Solution();
+                        Console.Write("nhap 1 so la ma:");
+                        string Roman = Console.ReadLine();
 
-            // In kết quả
-            Console.WriteLine($"Chuỗi số La Mã {romanNumeral} tương đương với số nguyên: {result}");
+                        int intRoman = RomanD.romanInt(Roman);
+                        Console.WriteLine(intRoman);
+                        break;
+                    case 2:
+                        Environment.Exit(0);
+                        break;
+                }
+            } while (true);
+            Console.ReadKey();
         }
-}
+    }
